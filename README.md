@@ -7,12 +7,12 @@ T-Bone TodoMVC
 # Installation
 
 ```bash
-	# Clone the github repository
-	git clone git@github.com:timkendrick/t-bone-todomvc.git
-	
-	# Change the current directory to the repository folder
-	cd t-bone-todomvc
-	
-	# Initialise the submodule contents
-	git submodule update --init
+# Clone the github repository
+git clone git@github.com:timkendrick/t-bone-todomvc.git
+
+# Change the current directory to the repository folder
+cd t-bone-todomvc
+
+# Initialise the submodule contents
+git submodule update --init
 ```
