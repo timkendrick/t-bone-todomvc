@@ -115,12 +115,25 @@ define(
 				Component.prototype._addModelListeners.call(this, model);
 				
 				model.get("items").on("change:completed", this._handleCollectionItemCompletedChanged, this);
+				
+				model.get("items").on("add", this._handleCollectionItemAdded, this);
 			},
 			
 			_removeModelListeners: function(model) {
 				Component.prototype._removeModelListeners.call(this, model);
 				
 				model.get("items").off("change:completed", this._handleCollectionItemCompletedChanged, this);
+				
+				model.get("items").off("add", this._handleCollectionItemAdded, this);
+			},
+			
+			_handleCollectionItemAdded: function(model, collection, options) {
+				var index = (options && ("index" in options) ? options.index : collection.length - 1);
+				this._addCollectionItemModelListeners(this.repeaters["items"][index].model);
+			},
+			
+			_addCollectionItemModelListeners: function(itemModel) {
+				itemModel.on("change:completed", this._handleCollectionItemCompletedChanged, this);
 			},
 			
 			_handleCollectionItemCompletedChanged: function() {
