@@ -1,0 +1,27 @@
+<div>
+	<header id="header">
+		<h1>todos</h1>
+		<input id="new-todo" data-id="new-todo" placeholder="What needs to be done?" autofocus>
+	</header>
+	<section id="main" data-class="todos-component--disabled:{!numItems}">
+		<input id="toggle-all" type="checkbox" data-id="all" checked="{allCompleted}">
+		<label for="toggle-all">Mark all as complete</label>
+		<ul id="todo-list" data-source="items" class="todos-component-list" data-class="todos-component-list--active:{activePage} todos-component-list--completed:{completedPage}"></ul>
+	</section>
+	<footer id="footer" data-class="todos-component--disabled:{!numItems}">
+		<span id="todo-count">{counter}</span>
+		<!-- Remove this if you don't implement routing -->
+		<ul id="filters">
+			<li>
+				<a data-class="selected:{indexPage}" href="#/">All</a>
+			</li>
+			<li>
+				<a data-class="selected:{activePage}" href="#/active">Active</a>
+			</li>
+			<li>
+				<a data-class="selected:{completedPage}" href="#/completed">Completed</a>
+			</li>
+		</ul>
+		<button id="clear-completed" data-id="clear" data-class="todos-component--disabled:{!numCompleted}">Clear completed ({numCompleted})</button>
+	</footer>
+</div>

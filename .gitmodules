@@ -1,0 +1,6 @@
+[submodule "js/lib/t-bone"]
+	path = js/lib/t-bone
+	url = git@github.com:timkendrick/t-bone.git
+[submodule "js/lib/requirejs-text"]
+	path = js/lib/requirejs-text
+	url = git@github.com:requirejs/text.git

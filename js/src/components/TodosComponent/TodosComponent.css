@@ -1,0 +1,11 @@
+.todos-component--disabled {
+	display: none;
+}
+
+.todos-component-list--active li.completed,
+.todos-component-list--completed li {
+	display: none;
+}
+.todos-component-list--completed li.completed {
+	display: block;
+}
