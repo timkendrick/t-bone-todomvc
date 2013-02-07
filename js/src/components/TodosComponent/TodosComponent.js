@@ -86,11 +86,11 @@ define(
 			},
 			
 			selectAll: function() {
-				this.get("items").each(function(itemModel) { itemModel.set("completed", true); });
+				this.model.get("items").each(function(itemModel) { itemModel.set("completed", true); });
 			},
 			
 			selectNone: function() {
-				this.get("items").each(function(itemModel) { itemModel.set("completed", false); });
+				this.model.get("items").each(function(itemModel) { itemModel.set("completed", false); });
 			},
 			
 			showAll: function() {
