@@ -36,16 +36,10 @@ define(
 					return "<strong>" + numItems + "</strong>" + (numItems === 1 ? " item left" : " items left");
 				},
 				"numCompleted {numItems}": function() {
-					if (!this.repeaters) { return 0; }
-					return _(this.repeaters["items"]).filter(function(itemView) {
-						return itemView.model.get("completed");
-					}).length;
+					return this.model.get("items").filter(function(itemModel) { return itemModel.get("completed"); }).length;
 				},
 				"allCompleted {numCompleted}": function() {
-					if (!this.repeaters) { return true; }
-					return _(this.repeaters["items"]).every(function(itemView) {
-						return itemView.model.get("completed");
-					});
+					return this.model.get("items").every(function(itemModel) { return itemModel.get("completed"); });
 				},
 				"currentPage": function() {
 					return this._currentPage;
@@ -73,9 +67,9 @@ define(
 					if (event.currentTarget.checked) { this.selectAll(); } else { this.selectNone(); }
 				},
 				"click [data-id=clear]": function(event) {
-					var itemViews = this.repeaters["items"];
-					for (var i = 0; i < itemViews.length; i++) {
-						if (itemViews[i].model.get("completed")) { this.removeItem(i--); }
+					var itemsCollection = this.model.get("items");
+					for (var i = 0; i < itemsCollection.length; i++) {
+						if (itemsCollection.at(i).get("completed")) { this.removeItem(i--); }
 					}
 				}
 			},
@@ -84,7 +78,7 @@ define(
 			
 			addItem: function(title, completed) {
 				var itemModel = new Component.Model({ title: title, completed: !!completed });
-				this.model.get("items").add(new Component.SubviewBinding({ view: ListItemComponent, model: itemModel}));
+				this.model.get("items").add(itemModel);
 			},
 			
 			removeItem: function(index) {
@@ -92,11 +86,11 @@ define(
 			},
 			
 			selectAll: function() {
-				_(this.repeaters["items"]).each(function(itemView) { itemView.model.set("completed", true); });
+				this.get("items").each(function(itemModel) { itemModel.set("completed", true); });
 			},
 			
 			selectNone: function() {
-				_(this.repeaters["items"]).each(function(itemView) { itemView.model.set("completed", false); });
+				this.get("items").each(function(itemModel) { itemModel.set("completed", false); });
 			},
 			
 			showAll: function() {
@@ -115,25 +109,12 @@ define(
 				Component.prototype._addModelListeners.call(this, model);
 				
 				model.get("items").on("change:completed", this._handleCollectionItemCompletedChanged, this);
-				
-				model.get("items").on("add", this._handleCollectionItemAdded, this);
 			},
 			
 			_removeModelListeners: function(model) {
 				Component.prototype._removeModelListeners.call(this, model);
 				
 				model.get("items").off("change:completed", this._handleCollectionItemCompletedChanged, this);
-				
-				model.get("items").off("add", this._handleCollectionItemAdded, this);
-			},
-			
-			_handleCollectionItemAdded: function(model, collection, options) {
-				var index = (options && ("index" in options) ? options.index : collection.length - 1);
-				this._addCollectionItemModelListeners(this.repeaters["items"][index].model);
-			},
-			
-			_addCollectionItemModelListeners: function(itemModel) {
-				itemModel.on("change:completed", this._handleCollectionItemCompletedChanged, this);
 			},
 			
 			_handleCollectionItemCompletedChanged: function() {
@@ -141,8 +122,6 @@ define(
 			}
 		});
 		
-		Component.registerStyle(TodosComponentStyle);
-		
-		return TodosComponent;
+		return Component.register(TodosComponent, "components.TodosComponent", TodosComponentStyle);
 	}
 );

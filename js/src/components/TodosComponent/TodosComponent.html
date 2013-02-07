@@ -6,7 +6,7 @@
 	<section id="main" data-class="todos-component--disabled:{!numItems}">
 		<input id="toggle-all" type="checkbox" data-id="all" checked="{allCompleted}">
 		<label for="toggle-all">Mark all as complete</label>
-		<ul id="todo-list" data-source="items" class="todos-component-list" data-class="todos-component-list--active:{activePage} todos-component-list--completed:{completedPage}"></ul>
+		<ul id="todo-list" data-source="items" data-template="components.ListItemComponent" class="todos-component-list" data-class="todos-component-list--active:{activePage} todos-component-list--completed:{completedPage}"></ul>
 	</section>
 	<footer id="footer" data-class="todos-component--disabled:{!numItems}">
 		<span id="todo-count">{counter}</span>

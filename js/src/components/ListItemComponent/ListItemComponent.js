@@ -56,6 +56,6 @@ define(
 			_editing: false
 		});
 		
-		return ListItemComponent;
+		return Component.register(ListItemComponent, "components.ListItemComponent");
 	}
 );
