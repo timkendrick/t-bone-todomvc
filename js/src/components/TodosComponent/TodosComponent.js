@@ -46,7 +46,7 @@ define(
 				},
 				"counter {numRemaining}": function() {
 					var numRemaining = this.get("numRemaining");
-					return "<strong>" + numRemaining + "</strong>" + (numRemaining === 1 ? " item left" : " items left");
+					return "<strong>" + numRemaining + "</strong> " + (numRemaining === 1 ? "item left" : "items left");
 				},
 				"currentPage": function() {
 					return this._currentPage;
