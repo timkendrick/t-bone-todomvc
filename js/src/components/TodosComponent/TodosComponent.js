@@ -31,15 +31,22 @@ define(
 				"numItems {items[]}": function() {
 					return this.model.get("items").length;
 				},
-				"counter {numItems}": function() {
-					var numItems = this.model.get("items").length;
-					return "<strong>" + numItems + "</strong>" + (numItems === 1 ? " item left" : " items left");
-				},
 				"numCompleted {numItems}": function() {
-					return this.model.get("items").filter(function(itemModel) { return itemModel.get("completed"); }).length;
+					return this.model.get("items").filter(
+						function(itemModel) { return itemModel.get("completed"); }
+					).length;
+				},
+				"numRemaining {numItems,numCompleted}": function() {
+					return this.model.get("items").filter(
+						function(itemModel) { return !itemModel.get("completed"); }
+					).length;
 				},
 				"allCompleted {numCompleted}": function() {
 					return this.model.get("items").every(function(itemModel) { return itemModel.get("completed"); });
+				},
+				"counter {numRemaining}": function() {
+					var numRemaining = this.get("numRemaining");
+					return "<strong>" + numRemaining + "</strong>" + (numRemaining === 1 ? " item left" : " items left");
 				},
 				"currentPage": function() {
 					return this._currentPage;
