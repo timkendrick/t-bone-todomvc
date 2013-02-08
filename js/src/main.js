@@ -11,6 +11,9 @@ define(
 		
 		TodosComponent
 	) {
+		// Initialise component styles
+		Component.init();
+		
 		// Define the root page model
 		var rootPageModel = new Component.Model({
 			items: new Component.Collection()
