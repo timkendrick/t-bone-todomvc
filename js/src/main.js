@@ -1,11 +1,13 @@
 define(
 	[
+		"jquery",
 		"backbone",
 		"tbone",
 		
 		"components/TodosComponent/TodosComponent"
 	],
 	function(
+		$,
 		Backbone,
 		Component,
 		
