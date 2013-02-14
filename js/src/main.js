@@ -36,7 +36,7 @@ define(
 		rootPageComponent.activate();
 		
 		// Listen for window resize events
-		if (typeof window !== 'undefined') { $(window).on("resize", function() { rootPageComponent.updateSize(); }); }
+		if (typeof window !== "undefined") { $(window).on("resize", function() { rootPageComponent.updateSize(); }); }
 		
 		// Create the router
 		var TodoRouter = Backbone.Router.extend({
