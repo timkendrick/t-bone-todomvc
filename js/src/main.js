@@ -28,7 +28,7 @@ define(
 		rootPageComponent.render();
 		
 		// Add the root page component's DOM element to the document
-		$("[data-role=main]").append(rootPageComponent.$el);
+		$("[role=main]").append(rootPageComponent.$el);
 		
 		// Activate the root page component
 		rootPageComponent.activate();
