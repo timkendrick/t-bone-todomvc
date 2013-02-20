@@ -112,14 +112,14 @@ define(
 				this.trigger("change:currentPage", this._currentPage = PAGE_COMPLETED);
 			},
 			
-			_addModelListeners: function(model) {
-				Component.prototype._addModelListeners.call(this, model);
+			delegateModel: function(model) {
+				Component.prototype.delegateModel.call(this, model);
 				
 				model.get("items").on("change:completed", this._handleCollectionItemCompletedChanged, this);
 			},
 			
-			_removeModelListeners: function(model) {
-				Component.prototype._removeModelListeners.call(this, model);
+			undelegateModel: function(model) {
+				Component.prototype.undelegateModel.call(this, model);
 				
 				model.get("items").off("change:completed", this._handleCollectionItemCompletedChanged, this);
 			},
